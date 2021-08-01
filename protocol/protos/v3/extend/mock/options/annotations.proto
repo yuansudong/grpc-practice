@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package Extend.Mock.Options;
+
+import "google/protobuf/descriptor.proto";
+option csharp_namespace = "Zwwx.Protobuf.Mock.Options";
+option cc_enable_arenas = true;
+option go_package = "protocol/generate/gopb/mock/pboptions;pboptions";
+
+// protoc-gen-mock的File
+message File {
+  // Value 值
+  string Value = 1;
+}
+
+// protoc-gen-mock的Method
+message Method {
+  // Value 值
+  string Value = 1;
+}
+
+// protoc-gen-mock的Message
+message Message {
+  // Value 值
+  string Value = 1;
+  // IsMock mock选项
+  bool IsMock = 2;
+}
+
+// protoc-gen-mock的service
+message Service {
+  string Value = 1;
+}
+
+// protoc-gen-mock 的service
+message Field {
+  string Value = 1;
+}
+
+extend google.protobuf.FileOptions {
+  Extend.Mock.Options.File file = 5001;
+}
+
+extend google.protobuf.MethodOptions {
+  Extend.Mock.Options.Method method = 5001;
+}
+
+extend google.protobuf.MessageOptions {
+  Extend.Mock.Options.Message message = 5001;
+}
+extend google.protobuf.ServiceOptions {
+  Extend.Mock.Options.Service service = 5001;
+}
+extend google.protobuf.FieldOptions {
+  Extend.Mock.Options.Field field = 5001;
+}

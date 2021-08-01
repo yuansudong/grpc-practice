@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package Error.Object;
+
+//////////////////////////////////////////////////////////////////////////////
+// option
+//////////////////////////////////////////////////////////////////////////////
+option csharp_namespace = "Zwwx.Protobuf.Error";
+option cc_enable_arenas = true;
+option go_package = "protocol/generate/gopb/error/pbm_object;pbm_object";
+
+// Object 用于描述一个错误信息码的消息对象
+message Object {
+  int32 Number = 1;    // code中的标识
+  string Message = 2;  //  用于表示消息
+  string Detail = 3;   // 详情
+}

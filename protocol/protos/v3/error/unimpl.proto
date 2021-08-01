@@ -1,0 +1,19 @@
+
+syntax = "proto3";
+
+package Error.Unimpl;
+
+//////////////////////////////////////////////////////////////////////////////
+// option
+//////////////////////////////////////////////////////////////////////////////
+option csharp_namespace = "Zwwx.Protobuf.Error";
+option cc_enable_arenas = true;
+option go_package = "protocol/generate/gopb/error/pbm_unimpl;pbm_unimpl";
+
+
+enum Unimpl {
+  // U_INVALID 无效
+  U_INVALID = 0;
+  // U_METHOD 方法未实现
+  U_METHOD = 1;
+}

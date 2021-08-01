@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package Common;
+
+
+//////////////////////////////////////////////////////////////////////////////
+// option
+//////////////////////////////////////////////////////////////////////////////
+option csharp_namespace = "Zwwx.Protobuf.Common";
+option cc_enable_arenas = true;
+option go_package = "protocol/generate/gopb/common/pbm_app;pbm_app";
+
+enum App {
+    // AP_UNKNOWN 未知的应用类型
+    AP_UNKNOWN = 0;
+    // AP_GAME_MASTER  GM后台 
+    AP_GAME_MASTER  = 1;
+    // AP_GAME_FRONTEND 游戏前端
+    AP_GAME_FRONTEND  = 2;
+    // AP_GAME_SDK SDK应用
+    AP_GAME_SDK = 3;
+}

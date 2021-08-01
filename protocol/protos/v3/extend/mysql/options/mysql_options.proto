@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+package Extend.Mysql.Options;
+
+
+
+option csharp_namespace = "Zwwx.Protobuf.Mysql.Options";
+option cc_enable_arenas = true;
+option go_package = "protocol/generate/gopb/extend/mysql/pbm_options;pbm_options";
+// Type 索引类型
+enum Type {
+  // T_UNK 索引类型未知
+  T_UNK = 0;
+  // T_PKI 索引类型为主键
+  T_PKI = 1;
+  // T_FTI 索引类型为全文索引
+  T_FTI = 2;
+  // T_UII 索引类型为唯一索引
+  T_UII = 3;
+  // T_NII 索引类型为普通索引
+  T_NII = 4;
+}
+
+//File
+message File {}
+
+// protoc-gen-mysql的Method
+message Method {}
+
+// Index 用于描述一个索引
+message Index {
+  // IndexType 索引类型
+  Type IndexType = 1;
+  // IndexField 索引字段
+  repeated string IndexField = 2;
+  // Comment 索引注释
+  string Comment = 3;
+}
+
+// protoc-gen-mysql的Message
+message Message {
+  // Commment 注释
+  string Comment = 1;
+  // Engine 引擎,如果不填,默认为innodb
+  string Engine = 2;
+  // Character 字符集,默认为utf8mb4
+  string Character = 3;
+  // Collate 默认为utf8mb4_general_ci
+  string Collate = 4;
+  // RowFormat 默认为Dynamic
+  string RowFormat = 5;
+  // Indexs 索引
+  repeated Index Indexs = 6;
+  // Database 数据库名称
+  string Database = 7;
+}
+
+// protoc-gen-mysql的service
+message Service {}
+
+// protoc-gen-mysql 的service
+message Field {
+  // Commment 注释
+  string Comment = 1;
+  // AutoIncr 是否自增
+  bool AutoIncr = 2;
+  // IsNull 是否为NULL
+  bool IsNULL = 3;
+  // Default 默认值
+  string Default = 4;
+}
+
+
+
+
+

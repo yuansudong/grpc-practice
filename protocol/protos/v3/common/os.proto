@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package Common;
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+// option
+//////////////////////////////////////////////////////////////////////////////
+option csharp_namespace = "Zwwx.Protobuf.Common";
+option cc_enable_arenas = true;
+option go_package = "protocol/generate/gopb/common/pbm_os;pbm_os";
+
+// OS 代表的是操作系统
+enum OS {
+  // OS_UNKNOWN 操作系统未知
+  OS_UNKNOWN = 0;
+  // OS_ANDROID 操作系统为android
+  OS_ANDROID = 1;
+  // OS_IOS 操作系统为IOS
+  OS_IOS = 2;
+  // OS_WINDOWS 操作系统为windows
+  OS_WINDOWS = 3;
+  // OS_LINUX 操作系统为linux
+  OS_LINUX = 4;
+  // OS_IPAD 操作系统为IPAD
+  OS_IPAD = 5;
+}

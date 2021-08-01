@@ -1,0 +1,43 @@
+syntax = "proto3";
+package keepalive;
+
+//////////////////////////////////////////////////////////////////////////////
+// option
+//////////////////////////////////////////////////////////////////////////////
+option csharp_namespace = "Zwwx.Protobuf.Keepalive";
+option cc_enable_arenas = true;
+option go_package = "protocol/generate/gopb/keepalive/pbkeepalive;pbkeepalive";
+option java_package = "zwwx.protobuf.keepalive";
+option java_outer_classname = "PBKeepalive";
+option java_multiple_files = true;
+option objc_class_prefix = "PBKeepalive";
+
+
+
+
+// Code 用于描述一个返回码
+enum Code {
+  // C_OK 代表成功
+  C_OK = 0;
+  // MainProtocol 代表协议错误
+  C_MAIN_PROTOCOL = 1;
+  // C_ARG 参数错误
+  C_ARG = 2;
+  // C_AUTH_TIMEOUT 超时
+  C_AUTH_TIMEOUT = 3;
+  // C_BODY_TOO_LARGE body太大
+  C_BODY_TOO_LARGE = 4;
+  // C_CMD cmd不对
+  C_CMD = 5;
+  // C_SUB_PROTOCOL 子协议错误
+  C_SUB_PROTOCOL = 6;
+  // C_NEED_AUTH 需要认证
+  C_NEED_AUTH = 7;
+  // C_NON_ACTIVE 不活跃,此Number下发之后,服务端会关闭连接
+  C_NON_ACTIVE = 8;
+  // C_AUTH 认证失败
+  C_AUTH = 9;
+  // C_GPOOL GRPC连接池报错
+  C_GPOOL = 10;
+}
+

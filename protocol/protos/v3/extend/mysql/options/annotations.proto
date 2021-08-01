@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package Extend.Mysql.Options;
+
+
+
+import "google/protobuf/descriptor.proto";
+import "extend/mysql/options/mysql_options.proto";
+
+option csharp_namespace = "Zwwx.Protobuf.Mysql.Options";
+option cc_enable_arenas = true;
+option go_package = "protocol/generate/gopb/mysql/pbm_options;pbm_options";
+
+extend google.protobuf.FileOptions {
+  Extend.Mysql.Options.File file = 5002;
+}
+extend google.protobuf.MethodOptions {
+  Extend.Mysql.Options.Method method = 5002;
+}
+
+extend google.protobuf.MessageOptions {
+  Extend.Mysql.Options.Message message = 5002;
+}
+extend google.protobuf.ServiceOptions {
+  Extend.Mysql.Options.Service service = 5002;
+}
+
+extend google.protobuf.FieldOptions {
+  Extend.Mysql.Options.Field field = 5002;
+}

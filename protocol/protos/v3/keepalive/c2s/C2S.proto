@@ -1,0 +1,34 @@
+syntax = "proto3";
+package Keepalive.C2S;
+
+//////////////////////////////////////////////////////////////////////////////
+// option
+//////////////////////////////////////////////////////////////////////////////
+option csharp_namespace = "Zwwx.Protobuf.Keepalive.C2S";
+option cc_enable_arenas = true;
+option go_package = "protocol/generate/gopb/keepalive/c2s/pbc2s;pbc2s";
+option java_package = "zwwx.protobuf.keepalive.C2S";
+option java_outer_classname = "PBC2S";
+option java_multiple_files = true;
+option objc_class_prefix = "PBC2S";
+
+// Command 用于描述客户端到服务端的行为
+enum Command {
+  // C_INVALID 无效
+  C_INVALID = 0;
+  // C_PING ping请求
+  C_PING = 1;
+  // C_AUTH  认证
+  C_AUTH = 2;
+}
+
+// C2SPing 客户端向服务器发起的ping操作
+message C2SPing {}
+
+// C2SAuth 客户端向服务器发起的认证操作
+message C2SAuth {
+  // Token 在账号服务器拿到的token
+  string Token = 1;
+  // PushToken 推送Token
+  string PushToken = 2;
+}

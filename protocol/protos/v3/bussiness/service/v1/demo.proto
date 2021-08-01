@@ -1,0 +1,101 @@
+syntax = "proto3";
+package Bussiness.Service.V1;
+
+option csharp_namespace = "Zwwx.Protobuf.Service.Demo.V1";
+option cc_enable_arenas = true;
+option go_package = "protocol/generate/gopb/bussiness/service/v1/pbs_demo;pbs_demo";
+
+
+import "google/api/annotations.proto";
+
+// C2SHello Hello请求
+message C2SHello {
+  // Text 用于描述一个文本
+    string Text = 1;
+}
+// S2CHello Hello响应
+message S2CHello {
+  string Reply = 1;
+}
+
+// C2STimestamp 时间戳请求
+message C2STimestamp {}
+// S2CTimestamp 时间戳响应
+message S2CTimestamp {
+  int64 DateTime = 1;
+}
+
+message C2SHeader {}
+message S2CHeader {}
+
+message C2SError {}
+message S2CError {}
+
+// C2SBody Body 响应
+message S2CBody {
+  // Text 问候语
+  string Text = 1;
+}
+// C2SBody body请求
+message C2SBody {
+  // ParamOne 参数1
+  string ParamOne = 1;
+  // Person 参数2
+  string ParamTwo = 2;
+  // Person 参数3
+  People Person = 3;
+}
+
+
+
+
+// People 用于描述一个人
+message People {
+  // NickName 昵称
+  string NickName = 1;
+  // Age 年龄
+  int32 Age = 2;
+  // Address 地址
+  int32 Address = 3;
+}
+
+
+// Demo 账户服务V1版本
+service Demo {
+  // Body 数据体
+  rpc BodyPost(C2SBody) returns (S2CBody);
+  // ParamGet 获取参数
+  rpc ParamGet(C2SBody) returns (S2CBody){
+    option (google.api.http) = {
+      get: "/v1/param",
+    };
+  };
+  // ParamBody
+  rpc ParamBody(C2SBody) returns (S2CBody);
+  // Hello 问候 unray
+  rpc Hello(C2SHello) returns (S2CHello);
+  // Timestamp 服务器时间戳
+  rpc Timestamp(C2STimestamp) returns (S2CTimestamp);
+  // Header 测试头部
+  rpc Header(C2SHeader) returns (S2CHeader);
+  // Error 测试错误
+  rpc Error(C2SError) returns (S2CError);
+  // NotifyByOneOf 通过oneof路由的方式
+  rpc SsStream(C2SRouter) returns (stream S2CRouter);
+  rpc CsStream(stream C2SRouter) returns (S2CRouter);
+
+  // BIDStream 双向流
+  rpc BIDStream(stream C2SRouter) returns (stream S2CRouter);
+}
+
+// C2SOneOf 流模式oneof模式
+message C2SRouter {
+  int64 Seq = 1;
+  int64 Cmd = 2;
+  string Text = 3;
+}
+// S2COneOf 流模式oneof模式
+message S2CRouter {
+  // C2S中的request
+  string Text = 1;
+}

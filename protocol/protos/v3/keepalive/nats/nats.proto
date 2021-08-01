@@ -1,0 +1,45 @@
+syntax = "proto3";
+package Keepalive.Nats;
+
+//////////////////////////////////////////////////////////////////////////////
+// option
+//////////////////////////////////////////////////////////////////////////////
+option csharp_namespace = "Zwwx.Protobuf.Keepalive.Nats";
+option cc_enable_arenas = true;
+option go_package = "protocol/generate/gopb/keepalive/nats/pbnats;pbnats";
+option java_package = "zwwx.protobuf.keepalive.nats";
+option java_outer_classname = "PBNats";
+option java_multiple_files = true;
+option objc_class_prefix = "PBNats";
+
+// Packet 用于描述一个包
+message Packet {
+  oneof Msg {
+    // GOP 群发消息体
+    Group GOP = 2;
+    // AP 群发消息
+    App AP = 3;
+    // OFF 强制下线
+    ForcedOFF OFF = 4;
+  };
+}
+
+// ForcedOFF 强制下线
+message ForcedOFF {
+
+}
+
+// Group 群发 1对M
+message Group {
+  // Body 数据体
+  bytes Body = 2;
+
+}
+
+// App 在线广播
+message App {
+  // AppID 应用程序的ID
+  string AppID = 1;
+  // Body 下发数据体
+  bytes Body = 2;
+}

@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package Extend.Doc.Options;
+
+import "google/protobuf/descriptor.proto";
+import "extend/doc/options/openapiv2.proto";
+
+
+option csharp_namespace = "Zwwx.Protobuf.doc.Options";
+option cc_enable_arenas = true;
+option go_package = "protocol/generate/gopb/doc/pbm_options;pbm_options";
+extend google.protobuf.FileOptions {
+  Extend.Doc.Options.Swagger openapiv2_swagger = 1042;
+}
+extend google.protobuf.MethodOptions {
+  Extend.Doc.Options.Operation openapiv2_operation = 1042;
+}
+extend google.protobuf.MessageOptions {
+  Extend.Doc.Options.Schema openapiv2_schema = 1042;
+}
+extend google.protobuf.ServiceOptions {
+  Extend.Doc.Options.Tag openapiv2_tag = 1042;
+}
+extend google.protobuf.FieldOptions {
+  Extend.Doc.Options.JSONSchema openapiv2_field = 1042;
+}

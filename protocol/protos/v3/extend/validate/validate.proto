@@ -1,0 +1,700 @@
+syntax = "proto2";
+package Extend.Validate;
+import "google/protobuf/descriptor.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+option go_package = "protocol/generate/gopb/validate/pbm_validate;pbm_validate";
+
+extend google.protobuf.MessageOptions {
+  optional bool Disabled = 1071;
+}
+
+extend google.protobuf.OneofOptions {
+  optional bool Required = 1071;
+}
+
+extend google.protobuf.FieldOptions {
+  optional FieldRules Rules = 1071;
+}
+
+message FieldRules {
+  optional MessageRules Message = 17;
+  oneof type {
+    FloatRules Float = 1;
+    DoubleRules Double = 2;
+    Int32Rules Int32 = 3;
+    Int64Rules Int64 = 4;
+    UInt32Rules UInt32 = 5;
+    UInt64Rules UInt64 = 6;
+    SInt32Rules SInt32 = 7;
+    SInt64Rules SInt64 = 8;
+    Fixed32Rules Fixed32 = 9;
+    Fixed64Rules Fixed64 = 10;
+    SFixed32Rules SFixed32 = 11;
+    SFixed64Rules SFixed64 = 12;
+    BoolRules Bool = 13;
+    StringRules String = 14;
+    BytesRules Bytes = 15;
+
+    // Complex Field Types
+    EnumRules Enum = 16;
+    RepeatedRules Repeated = 18;
+    MapRules Map = 19;
+
+    // Well-Known Field Types
+    AnyRules Any = 20;
+    DurationRules Duration = 21;
+    TimestampRules Timestamp = 22;
+  };
+}
+
+// FloatRules 用于描述浮点数规则
+message FloatRules {
+  // Const 指定一个字段必须等于一个值
+  optional float Const = 1;
+  // LT 小于
+  optional float LT = 2;
+  // LTE 小于等于
+  optional float LTE = 3;
+  // GT 大于等于
+  optional float GT = 4;
+  // GTE 大于等于
+  optional float GTE = 5;
+  // In 指明字段必须在一个数组里取值
+  repeated float In = 6;
+  // NotIn 指明字段必须不在一个集合里
+  repeated float NotIn = 7;
+}
+
+// DoubleRules 用于描述一个double 规则
+message DoubleRules {
+  optional double Const = 1;
+  optional double LT = 2;
+  optional double LTE = 3;
+  optional double GT = 4;
+  optional double GTE = 5;
+  repeated double In = 6;
+  repeated double NotIn = 7;
+}
+
+message Int32Rules {
+  optional int32 Const = 1;
+  optional int32 LT = 2;
+  optional int32 LTE = 3;
+  optional int32 GT = 4;
+  optional int32 GTE = 5;
+  repeated int32 In = 6;
+  repeated int32 NotIn = 7;
+}
+
+message Int64Rules {
+  optional int64 Const = 1;
+  optional int64 LT = 2;
+  optional int64 LTE = 3;
+  optional int64 GT = 4;
+  optional int64 GTE = 5;
+  repeated int64 In = 6;
+  repeated int64 NotIn = 7;
+}
+
+// UInt32Rules describes the constraints applied to `uint32` Values
+message UInt32Rules {
+  // Const specifies that this field must be exactly the specified value
+  optional uint32 Const = 1;
+
+  // Lt specifies that this field must be less than the specified value,
+  // exclusive
+  optional uint32 LT = 2;
+
+  // Lte specifies that this field must be less than or equal to the
+  // specified value, inclusive
+  optional uint32 LTE = 3;
+
+  // Gt specifies that this field must be greater than the specified value,
+  // exclusive. If the value of Gt is larger than a specified Lt or Lte, the
+  // range is reversed.
+  optional uint32 GT = 4;
+
+  // Gte specifies that this field must be greater than or equal to the
+  // specified value, inclusive. If the value of Gte is larger than a
+  // specified Lt or Lte, the range is reversed.
+  optional uint32 GTE = 5;
+
+  // In specifies that this field must be equal to one of the specified
+  // Values
+  repeated uint32 In = 6;
+
+  // NotIn specifies that this field cannot be equal to one of the specified
+  // Values
+  repeated uint32 NotIn = 7;
+}
+
+// UInt64Rules describes the constraints applied to `uint64` Values
+message UInt64Rules {
+  // Const specifies that this field must be exactly the specified value
+  optional uint64 Const = 1;
+
+  // Lt specifies that this field must be less than the specified value,
+  // exclusive
+  optional uint64 LT = 2;
+
+  // Lte specifies that this field must be less than or equal to the
+  // specified value, inclusive
+  optional uint64 LTE = 3;
+
+  // Gt specifies that this field must be greater than the specified value,
+  // exclusive. If the value of Gt is larger than a specified Lt or Lte, the
+  // range is reversed.
+  optional uint64 GT = 4;
+
+  // Gte specifies that this field must be greater than or equal to the
+  // specified value, inclusive. If the value of Gte is larger than a
+  // specified Lt or Lte, the range is reversed.
+  optional uint64 GTE = 5;
+
+  // In specifies that this field must be equal to one of the specified
+  // Values
+  repeated uint64 In = 6;
+
+  // NotIn specifies that this field cannot be equal to one of the specified
+  // Values
+  repeated uint64 NotIn = 7;
+}
+
+// SInt32Rules describes the constraints applied to `sint32` Values
+message SInt32Rules {
+  // Const specifies that this field must be exactly the specified value
+  optional sint32 Const = 1;
+
+  // Lt specifies that this field must be less than the specified value,
+  // exclusive
+  optional sint32 LT = 2;
+
+  // Lte specifies that this field must be less than or equal to the
+  // specified value, inclusive
+  optional sint32 LTE = 3;
+
+  // Gt specifies that this field must be greater than the specified value,
+  // exclusive. If the value of Gt is larger than a specified Lt or Lte, the
+  // range is reversed.
+  optional sint32 GT = 4;
+
+  // Gte specifies that this field must be greater than or equal to the
+  // specified value, inclusive. If the value of Gte is larger than a
+  // specified Lt or Lte, the range is reversed.
+  optional sint32 GTE = 5;
+
+  // In specifies that this field must be equal to one of the specified
+  // Values
+  repeated sint32 In = 6;
+
+  // NotIn specifies that this field cannot be equal to one of the specified
+  // Values
+  repeated sint32 NotIn = 7;
+}
+
+// SInt64Rules describes the constraints applied to `sint64` Values
+message SInt64Rules {
+  // Const specifies that this field must be exactly the specified value
+  optional sint64 Const = 1;
+
+  // Lt specifies that this field must be less than the specified value,
+  // exclusive
+  optional sint64 LT = 2;
+
+  // Lte specifies that this field must be less than or equal to the
+  // specified value, inclusive
+  optional sint64 LTE = 3;
+
+  // Gt specifies that this field must be greater than the specified value,
+  // exclusive. If the value of Gt is larger than a specified Lt or Lte, the
+  // range is reversed.
+  optional sint64 GT = 4;
+
+  // Gte specifies that this field must be greater than or equal to the
+  // specified value, inclusive. If the value of Gte is larger than a
+  // specified Lt or Lte, the range is reversed.
+  optional sint64 GTE = 5;
+
+  // In specifies that this field must be equal to one of the specified
+  // Values
+  repeated sint64 In = 6;
+
+  // NotIn specifies that this field cannot be equal to one of the specified
+  // Values
+  repeated sint64 NotIn = 7;
+}
+
+// Fixed32Rules describes the constraints applied to `fixed32` Values
+message Fixed32Rules {
+  // Const specifies that this field must be exactly the specified value
+  optional fixed32 Const = 1;
+
+  // Lt specifies that this field must be less than the specified value,
+  // exclusive
+  optional fixed32 LT = 2;
+
+  // Lte specifies that this field must be less than or equal to the
+  // specified value, inclusive
+  optional fixed32 LTE = 3;
+
+  // Gt specifies that this field must be greater than the specified value,
+  // exclusive. If the value of Gt is larger than a specified Lt or Lte, the
+  // range is reversed.
+  optional fixed32 GT = 4;
+
+  // Gte specifies that this field must be greater than or equal to the
+  // specified value, inclusive. If the value of Gte is larger than a
+  // specified Lt or Lte, the range is reversed.
+  optional fixed32 GTE = 5;
+
+  // In specifies that this field must be equal to one of the specified
+  // Values
+  repeated fixed32 In = 6;
+
+  // NotIn specifies that this field cannot be equal to one of the specified
+  // Values
+  repeated fixed32 NotIn = 7;
+}
+
+// Fixed64Rules describes the constraints applied to `fixed64` Values
+message Fixed64Rules {
+  // Const specifies that this field must be exactly the specified value
+  optional fixed64 Const = 1;
+
+  // Lt specifies that this field must be less than the specified value,
+  // exclusive
+  optional fixed64 LT = 2;
+
+  // Lte specifies that this field must be less than or equal to the
+  // specified value, inclusive
+  optional fixed64 LTE = 3;
+
+  // Gt specifies that this field must be greater than the specified value,
+  // exclusive. If the value of Gt is larger than a specified Lt or Lte, the
+  // range is reversed.
+  optional fixed64 GT = 4;
+
+  // Gte specifies that this field must be greater than or equal to the
+  // specified value, inclusive. If the value of Gte is larger than a
+  // specified Lt or Lte, the range is reversed.
+  optional fixed64 GTE = 5;
+
+  // In specifies that this field must be equal to one of the specified
+  // Values
+  repeated fixed64 In = 6;
+
+  // NotIn specifies that this field cannot be equal to one of the specified
+  // Values
+  repeated fixed64 NotIn = 7;
+}
+
+// SFixed32Rules describes the constraints applied to `sfixed32` Values
+message SFixed32Rules {
+  // Const specifies that this field must be exactly the specified value
+  optional sfixed32 Const = 1;
+
+  // Lt specifies that this field must be less than the specified value,
+  // exclusive
+  optional sfixed32 LT = 2;
+
+  // Lte specifies that this field must be less than or equal to the
+  // specified value, inclusive
+  optional sfixed32 LTE = 3;
+
+  // Gt specifies that this field must be greater than the specified value,
+  // exclusive. If the value of Gt is larger than a specified Lt or Lte, the
+  // range is reversed.
+  optional sfixed32 GT = 4;
+
+  // Gte specifies that this field must be greater than or equal to the
+  // specified value, inclusive. If the value of Gte is larger than a
+  // specified Lt or Lte, the range is reversed.
+  optional sfixed32 GTE = 5;
+
+  // In specifies that this field must be equal to one of the specified
+  // Values
+  repeated sfixed32 In = 6;
+
+  // NotIn specifies that this field cannot be equal to one of the specified
+  // Values
+  repeated sfixed32 NotIn = 7;
+}
+
+// SFixed64Rules describes the constraints applied to `sfixed64` Values
+message SFixed64Rules {
+  // Const specifies that this field must be exactly the specified value
+  optional sfixed64 Const = 1;
+
+  // Lt specifies that this field must be less than the specified value,
+  // exclusive
+  optional sfixed64 LT = 2;
+
+  // Lte specifies that this field must be less than or equal to the
+  // specified value, inclusive
+  optional sfixed64 LTE = 3;
+
+  // Gt specifies that this field must be greater than the specified value,
+  // exclusive. If the value of Gt is larger than a specified Lt or Lte, the
+  // range is reversed.
+  optional sfixed64 GT = 4;
+
+  // Gte specifies that this field must be greater than or equal to the
+  // specified value, inclusive. If the value of Gte is larger than a
+  // specified Lt or Lte, the range is reversed.
+  optional sfixed64 GTE = 5;
+
+  // In specifies that this field must be equal to one of the specified
+  // Values
+  repeated sfixed64 In = 6;
+
+  // NotIn specifies that this field cannot be equal to one of the specified
+  // Values
+  repeated sfixed64 NotIn = 7;
+}
+
+// BoolRules describes the constraints applied to `bool` Values
+message BoolRules {
+  // Const specifies that this field must be exactly the specified value
+  optional bool Const = 1;
+}
+
+// StringRules describe the constraints applied to `string` Values
+message StringRules {
+  // Const specifies that this field must be exactly the specified value
+  optional string Const = 1;
+
+  // Len specifies that this field must be the specified number of
+  // characters (Unicode code points). Note that the number of
+  // characters may differ from the number of bytes In the string.
+  optional uint64 Len = 19;
+
+  // MinLen specifies that this field must be the specified number of
+  // characters (Unicode code points) at a minimum. Note that the number of
+  // characters may differ from the number of bytes In the string.
+  optional uint64 MinLen = 2;
+
+  // MaxLen specifies that this field must be the specified number of
+  // characters (Unicode code points) at a maximum. Note that the number of
+  // characters may differ from the number of bytes In the string.
+  optional uint64 MaxLen = 3;
+
+  // LenBytes specifies that this field must be the specified number of bytes
+  // at a minimum
+  optional uint64 LenBytes = 20;
+
+  // MinBytes specifies that this field must be the specified number of bytes
+  // at a minimum
+  optional uint64 MinBytes = 4;
+
+  // MaxBytes specifies that this field must be the specified number of bytes
+  // at a maximum
+  optional uint64 MaxBytes = 5;
+
+  // Pattern specifes that this field must match against the specified
+  // regular expression (RE2 syntax). The included expression should elide
+  // any delimiters.
+  optional string Pattern = 6;
+
+  // Prefix specifies that this field must have the specified substring at
+  // the beginning of the string.
+  optional string Prefix = 7;
+
+  // Suffix specifies that this field must have the specified substring at
+  // the end of the string.
+  optional string Suffix = 8;
+
+  // Contains specifies that this field must have the specified substring
+  // anywhere In the string.
+  optional string Contains = 9;
+
+  // NotContains specifies that this field cannot have the specified substring
+  // anywhere In the string.
+  optional string NotContains = 23;
+
+  // In specifies that this field must be equal to one of the specified
+  // Values
+  repeated string In = 10;
+
+  // NotIn specifies that this field cannot be equal to one of the specified
+  // Values
+  repeated string NotIn = 11;
+
+  // WellKnown rules provide advanced constraints against common string
+  // patterns
+  oneof well_known {
+    // Email specifies that the field must be a valid Email Address as
+    // defined by RFC 5322
+    bool Email = 12;
+
+    // Hostname specifies that the field must be a valid Hostname as
+    // defined by RFC 1034. This constraint does not support
+    // internationalized domain names (IDNs).
+    bool Hostname = 13;
+
+    // Ip specifies that the field must be a valid IP (v4 or v6) Address.
+    // Valid IPv6 addresses should not include surrounding square brackets.
+    bool IP = 14;
+
+    // Ipv4 specifies that the field must be a valid IPv4 Address.
+    bool IPV4 = 15;
+
+    // Ipv6 specifies that the field must be a valid IPv6 Address. Valid
+    // IPv6 addresses should not include surrounding square brackets.
+    bool IPV6 = 16;
+
+    // Uri specifies that the field must be a valid, absolute URI as defined
+    // by RFC 3986
+    bool URI = 17;
+
+    // UriRef specifies that the field must be a valid URI as defined by RFC
+    // 3986 and may be relative or absolute.
+    bool URI_REF = 18;
+
+    // Address specifies that the field must be either a valid Hostname as
+    // defined by RFC 1034 (which does not support internationalized domain
+    // names or IDNs), or it can be a valid IP (v4 or v6).
+    bool Address = 21;
+
+    // Uuid specifies that the field must be a valid UUID as defined by
+    // RFC 4122
+    bool UUID = 22;
+  }
+
+  // This applies to regexes HTTP_HEADER_NAME and HTTP_HEADER_VALUE to enable
+  // Strict header validation.
+  // By default, this is true, and HTTP header validations are RFC-compliant.
+  // Setting to false will enable a looser validations that only disallows
+  // \r\n\0 characters, which can be used to bypass header matching rules.
+  optional bool Strict = 25 [default = true];
+}
+
+// WellKnownRegex contain some well-known patterns.
+enum KnownRegex {
+  UNKNOWN = 0;
+
+  // HTTP header name as defined by RFC 7230.
+  HTTP_HEADER_NAME = 1;
+
+  // HTTP header value as defined by RFC 7230.
+  HTTP_HEADER_VALUE = 2;
+}
+
+// BytesRules describe the constraints applied to `bytes` Values
+message BytesRules {
+  // Const specifies that this field must be exactly the specified value
+  optional bytes Const = 1;
+
+  // Len specifies that this field must be the specified number of bytes
+  optional uint64 Len = 13;
+
+  // MinLen specifies that this field must be the specified number of bytes
+  // at a minimum
+  optional uint64 MinLen = 2;
+
+  // MaxLen specifies that this field must be the specified number of bytes
+  // at a maximum
+  optional uint64 MaxLen = 3;
+
+  // Pattern specifes that this field must match against the specified
+  // regular expression (RE2 syntax). The included expression should elide
+  // any delimiters.
+  optional string Pattern = 4;
+
+  // Prefix specifies that this field must have the specified bytes at the
+  // beginning of the string.
+  optional bytes Prefix = 5;
+
+  // Suffix specifies that this field must have the specified bytes at the
+  // end of the string.
+  optional bytes Suffix = 6;
+
+  // Contains specifies that this field must have the specified bytes
+  // anywhere In the string.
+  optional bytes Contains = 7;
+
+  // In specifies that this field must be equal to one of the specified
+  // Values
+  repeated bytes In = 8;
+
+  // NotIn specifies that this field cannot be equal to one of the specified
+  // Values
+  repeated bytes NotIn = 9;
+
+  // WellKnown rules provide advanced constraints against common byte
+  // patterns
+  oneof well_known {
+    // Ip specifies that the field must be a valid IP (v4 or v6) Address In
+    // byte format
+    bool IP = 10;
+
+    // Ipv4 specifies that the field must be a valid IPv4 Address In byte
+    // format
+    bool IPV4 = 11;
+
+    // Ipv6 specifies that the field must be a valid IPv6 Address In byte
+    // format
+    bool IPV6 = 12;
+  }
+}
+
+// EnumRules describe the constraints applied to enum Values
+message EnumRules {
+  // Const specifies that this field must be exactly the specified value
+  optional int32 Const = 1;
+
+  // DefinedOnly specifies that this field must be only one of the defined
+  // Values for this enum, failing on any undefined value.
+  optional bool DefinedOnly = 2;
+
+  // In specifies that this field must be equal to one of the specified
+  // Values
+  repeated int32 In = 3;
+
+  // NotIn specifies that this field cannot be equal to one of the specified
+  // Values
+  repeated int32 NotIn = 4;
+}
+
+// MessageRules describe the constraints applied to embedded message Values.
+// For message-type fields, validation is performed recursively.
+message MessageRules {
+  // Skip specifies that the validation rules of this field should not be
+  // evaluated
+  optional bool Skip = 1;
+
+  // Required specifies that this field must be set
+  optional bool Required = 2;
+}
+
+// RepeatedRules describe the constraints applied to `repeated` Values
+message RepeatedRules {
+  // MinItems specifies that this field must have the specified number of
+  // Items at a minimum
+  optional uint64 MinItems = 1;
+
+  // MaxItems specifies that this field must have the specified number of
+  // Items at a maximum
+  optional uint64 MaxItems = 2;
+
+  // Unique specifies that all elements In this field must be Unique. This
+  // contraint is only applicable to scalar and enum types (messages are not
+  // supported).
+  optional bool Unique = 3;
+
+  // Items specifies the contraints to be applied to each item In the field.
+  // Repeated message fields will still execute validation against each item
+  // unless Skip is specified here.
+  optional FieldRules Items = 4;
+}
+
+// MapRules describe the constraints applied to `map` Values
+message MapRules {
+  // MinPairs specifies that this field must have the specified number of
+  // KVs at a minimum
+  optional uint64 MinPairs = 1;
+
+  // MaxPairs specifies that this field must have the specified number of
+  // KVs at a maximum
+  optional uint64 MaxPairs = 2;
+
+  // NoSparse specifies Values In this field cannot be unset. This only
+  // applies to map's with message value types.
+  optional bool NoSparse = 3;
+
+  // Keys specifies the constraints to be applied to each key In the field.
+  optional FieldRules Keys = 4;
+
+  // Values specifies the constraints to be applied to the value of each key
+  // In the field. Message Values will still have their validations evaluated
+  // unless Skip is specified here.
+  optional FieldRules Values = 5;
+}
+
+// AnyRules describe constraints applied exclusively to the
+// `google.protobuf.Any` well-known type
+message AnyRules {
+  // Required specifies that this field must be set
+  optional bool Required = 1;
+
+  // In specifies that this field's `type_url` must be equal to one of the
+  // specified Values.
+  repeated string In = 2;
+
+  // NotIn specifies that this field's `type_url` must not be equal to any of
+  // the specified Values.
+  repeated string NotIn = 3;
+}
+
+// DurationRules describe the constraints applied exclusively to the
+// `google.protobuf.Duration` well-known type
+message DurationRules {
+  // Required specifies that this field must be set
+  optional bool Required = 1;
+
+  // Const specifies that this field must be exactly the specified value
+  optional google.protobuf.Duration Const = 2;
+
+  // Lt specifies that this field must be less than the specified value,
+  // exclusive
+  optional google.protobuf.Duration LT = 3;
+
+  // Lt specifies that this field must be less than the specified value,
+  // inclusive
+  optional google.protobuf.Duration LTE = 4;
+
+  // Gt specifies that this field must be greater than the specified value,
+  // exclusive
+  optional google.protobuf.Duration GT = 5;
+
+  // Gte specifies that this field must be greater than the specified value,
+  // inclusive
+  optional google.protobuf.Duration GTE = 6;
+
+  // In specifies that this field must be equal to one of the specified
+  // Values
+  repeated google.protobuf.Duration In = 7;
+
+  // NotIn specifies that this field cannot be equal to one of the specified
+  // Values
+  repeated google.protobuf.Duration NotIn = 8;
+}
+
+// TimestampRules describe the constraints applied exclusively to the
+// `google.protobuf.Timestamp` well-known type
+message TimestampRules {
+  // Required specifies that this field must be set
+  optional bool Required = 1;
+
+  // Const specifies that this field must be exactly the specified value
+  optional google.protobuf.Timestamp Const = 2;
+
+  // Lt specifies that this field must be less than the specified value,
+  // exclusive
+  optional google.protobuf.Timestamp LT = 3;
+
+  // Lte specifies that this field must be less than the specified value,
+  // inclusive
+  optional google.protobuf.Timestamp LTE = 4;
+
+  // Gt specifies that this field must be greater than the specified value,
+  // exclusive
+  optional google.protobuf.Timestamp GT = 5;
+
+  // Gte specifies that this field must be greater than the specified value,
+  // inclusive
+  optional google.protobuf.Timestamp GTE = 6;
+
+  // LtNow specifies that this must be less than the current time. LtNow
+  // can only be used with the Within rule.
+  optional bool LTNow = 7;
+
+  // GtNow specifies that this must be greater than the current time. GtNow
+  // can only be used with the Within rule.
+  optional bool GTNow = 8;
+
+  // Within specifies that this field must be Within this duration of the
+  // current time. This constraint can be used alone or with the LtNow and
+  // GtNow rules.
+  optional google.protobuf.Duration Within = 9;
+}

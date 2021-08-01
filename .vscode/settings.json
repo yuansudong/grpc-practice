@@ -1,0 +1,16 @@
+{
+    "clang-format.style": "google",
+    "protoc": {
+        "path": "protoc",
+        "compile_on_save": true,
+        "options": [
+            "--proto_path=${workspaceRoot}/protocol/protos/v3",
+            "--go_out=plugins=grpc,import_prefix=unary/:${workspaceRoot}",
+            // "--validate_out=lang=go,import_prefix=durak/:${workspaceRoot}",
+             "--grpc-gateway_out=logtostderr=true:${workspaceRoot}",
+            // "--go-code_out=go_mod=unary:${workspaceRoot}",
+            // "--api-doc_out=logtostderr=true:${workspaceRoot}/protocol/document",
+            // "--mysql_out=user=root;password=zwwx2021;host=m-mysql.zwwx.com;port=3307:${workspaceRoot}",
+        ]
+    }
+}

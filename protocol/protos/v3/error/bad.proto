@@ -1,0 +1,18 @@
+
+syntax = "proto3";
+package Error;
+//////////////////////////////////////////////////////////////////////////////
+// option
+//////////////////////////////////////////////////////////////////////////////
+option csharp_namespace = "Zwwx.Protobuf.Error";
+option cc_enable_arenas = true;
+option go_package = "protocol/generate/gopb/error/pbm_bad;pbm_bad";
+// Bad 客户端发起的错误请求
+enum Bad {
+  // BA_INVALID 无效
+  BA_INVALID = 0;
+  // BA_ARG 错误错误
+  BA_ARG = 1;
+  // BA_TOKEN token错误
+  BA_TOKEN = 2;
+}

@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package Common;
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+// option
+//////////////////////////////////////////////////////////////////////////////
+option csharp_namespace = "Zwwx.Protobuf.Common.Pattern";
+option cc_enable_arenas = true;
+option go_package = "protocol/generate/gopb/common/pbm_pattern;pbm_pattern";
+
+// Pattern 代表强制下线的策略
+enum Pattern {
+  // P_UNKNOWN 默认值,无效
+  P_UNKNOWN = 0;
+  // MUTEX 各种操作系统互斥
+  P_MUTEX = 1;
+  // PARALLEL 各种操作系统并行
+  P_PARALLEL = 2;
+}

@@ -1,0 +1,123 @@
+syntax = "proto3";
+package Bussiness.Service.Restful;
+
+option go_package = "protocol/generate/gopb/bussiness/service/restful/pbs_restful;pbs_restful";
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+
+enum ResourceFieldMask {
+    RFM_NICK_NAME = 0;
+    RFM_SEX = 1;
+    RFM_CONTENT = 2;
+    RFM_ADDRESS = 3;
+}
+
+// Address 地址
+message Address {
+    string F1 = 1;
+    string F2 = 2;
+    string F3 = 3;
+}
+
+message Resource {
+    // NickName 昵称
+    string NickName = 1;
+    // Sex 性别
+    int32 Sex = 2;
+    // Content 内容
+    string Content = 3;
+    // Addr 地址
+    Address Addr = 4;
+    // ID 资源唯一标识符
+    int64 ID = 5;
+}
+
+message GetRequest {
+    // ID 资源ID
+    int64 ID = 1;  
+}
+
+// 
+message ListRequest {
+    // PageToken 页面Token
+    string PageToken = 1;
+    int32  PageSize = 2;
+}
+
+message ListResponse {
+    // NextPageToken 下一页的页面Token
+    string NextPageToken = 1;
+    // LastPageToken 上一页的页面Token
+    string LastPageToken = 2;
+    // List 列表
+    repeated Resource List = 3;
+
+}
+
+
+message UpdateItem {
+    // Mask 掩码
+    ResourceFieldMask Mask = 1;
+    // Data 与mask相对应的值
+    Resource Data = 2;
+}
+
+message UpdateRequest {
+    // Items 更新条目的一个集合
+    repeated UpdateItem Items = 1;
+}
+
+
+
+
+// Restful 账户服务V1版本
+service Restful {
+   // Create 创建
+   rpc Create(Resource) returns (Resource) {
+        option (google.api.http) = {
+            post : "/v1/resource/{ID}/{Sex}/{Content}/{Addr.F1}/{Addr.F2}"
+            body : "Addr.F3"
+            additional_bindings: [
+				{
+					patch: "/v2/resource/{ID}/{Sex}/{Content}"
+					body: "Addr"
+				}
+			]
+        };
+    };
+   // Get 获取单个
+   rpc Get(GetRequest) returns (Resource) {
+       option (google.api.http) = {
+           get : "/v1/resource/{ID}"
+       };
+   };
+   // List 拉取结果集 
+   rpc List(ListRequest) returns (ListResponse) {
+       option (google.api.http) = {
+           get : "/v1/resource/list"
+       };
+   };
+   // Update 更新
+   rpc Update(UpdateRequest) returns (Resource) {
+       option (google.api.http) = {
+           patch: "/v1/resource"
+           body: "*"
+        };
+   };
+   // Update 更新
+   rpc Replace(UpdateRequest) returns (Resource) {
+        option (google.api.http) = {
+            put: "/v1/resource"
+            body: "*"
+        };
+   };
+   // Delete 删除
+   rpc Delete(Resource) returns (google.protobuf.Empty) {
+       option (google.api.http) = {
+           delete: "/v1/resource/{ID}"
+       }; 
+   };
+}
+
+

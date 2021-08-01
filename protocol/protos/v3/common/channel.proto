@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package Common;
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+// option
+//////////////////////////////////////////////////////////////////////////////
+option csharp_namespace = "ZW.Protobuf.Common.Channel";
+option cc_enable_arenas = true;
+option go_package = "protocol/generate/gopb/common/pbm_channel;pbm_channel";
+
+
+// Channel 用于定义发布渠道
+enum Channel {
+  // C_UNKNOWN 渠道未知
+  C_UNKNWON = 0;
+  // C_WX 渠道为微信
+  C_WX = 1;
+  // C_4399 渠道为C4399
+  C_4399 = 2;
+  // C_FB 渠道为脸书
+  C_FB = 3;
+  // C_THL 渠道为今日头条
+  C_THL = 4;
+  // C_ALIPAY 渠道为支付宝小程序
+  C_ALIPAY = 5;
+  // C_VIVO 渠道为vivo
+  C_VIVO = 6;
+  // C_HUAWEI 渠道为华为
+  C_HUAWEI = 7;
+  // C_MEIZU 渠道为魅族
+  C_MEIZU = 8;
+  // C_OPPO 渠道为OPPO
+  C_OPPO = 9;
+  // C_APPLE 渠道为苹果
+  C_APPLE = 10;
+  // C_STEAM 渠道为steam
+  C_STEAM = 11;
+  // C_GOOGLE 渠道为google
+  C_GOOGLE = 12;
+  // C_TWITTER 渠道为推特
+  C_TWITTER = 13;
+}

@@ -1,0 +1,16 @@
+
+syntax = "proto3";
+package Error;
+//////////////////////////////////////////////////////////////////////////////
+// option
+//////////////////////////////////////////////////////////////////////////////
+option csharp_namespace = "Zwwx.Protobuf.Error";
+option cc_enable_arenas = true;
+option go_package = "protocol/generate/gopb/error/pbm_unknown;pbm_unknown";
+
+enum Unknown {
+  // U_INVALID 无效
+  UN_INVALID = 0;
+  // U_METHOD 未知的方法
+  UN_METHOD = 1;
+}

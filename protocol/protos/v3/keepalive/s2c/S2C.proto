@@ -1,0 +1,47 @@
+syntax = "proto3";
+package Keepalive.S2C;
+
+//////////////////////////////////////////////////////////////////////////////
+// option
+//////////////////////////////////////////////////////////////////////////////
+option csharp_namespace = "Zwwx.Protobuf.Keepalive.S2C";
+option cc_enable_arenas = true;
+option go_package = "protocol/generate/gopb/keepalive/s2c/pbs2c;pbs2c";
+option java_package = "zwwx.protobuf.keepalive.S2C";
+option java_outer_classname = "PBS2C";
+option java_multiple_files = true;
+option objc_class_prefix = "PBS2C";
+
+
+// Command 用于描述客户端到服务端的行为
+enum Command {
+  // C_INVALID 无效
+  C_INVALID = 0;
+  // C_PONG 对于Ping的响应
+  C_PONG = 1;
+  // C_AUTH 对于Auth的响应
+  C_AUTH = 2;
+  // C_FORCED_OFF 强制下线
+  C_FORCED_OFF = 3;
+  // C_BUSSINESS 业务消息
+  C_BUSSINESS = 4;
+}
+
+// S2CBussiness 不同应用的业务消息
+message S2CBussiness {
+  // Body 用于表示业务数据体
+  bytes Body = 1;
+}
+
+// S2CForcedOFF 强制下线的通知
+message S2CForcedOFF {
+}
+
+// S2CPong 对于Pong消息的响应
+message S2CPong {
+  // Timstamp 时间戳
+  int64 Timestamp = 1;
+}
+
+// S2CAuth 对于Auth消息的响应
+message S2CAuth {}

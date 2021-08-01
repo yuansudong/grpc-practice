@@ -1,0 +1,22 @@
+
+syntax = "proto3";
+
+package Error;
+
+//////////////////////////////////////////////////////////////////////////////
+// option
+//////////////////////////////////////////////////////////////////////////////
+option csharp_namespace = "Zwwx.Protobuf.Error";
+option cc_enable_arenas = true;
+option go_package = "protocol/generate/gopb/error/pbm_abort;pbm_abort";
+// Abort 异常错误类型
+enum Abort {
+  // A_INVALID 无效
+  AB_INVALID = 0;
+  // UserNotExist 用户不存在
+  AB_USER_NOT_EXIST = 1;
+  // A_USER_ALREADY_EXIST 用户已经存在
+  AB_USER_ALREADY_EXIST = 2;
+  // A_PWD_INCORRECT 密码不正确
+  AB_PWD_INCORRECT = 3;
+}

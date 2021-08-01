@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package Error;
+
+//////////////////////////////////////////////////////////////////////////////
+// option
+//////////////////////////////////////////////////////////////////////////////
+option csharp_namespace = "Zwwx.Protobuf.Error";
+option cc_enable_arenas = true;
+option go_package = "protocol/generate/gopb/error/pbm_cancel;pbm_cancel";
+
+// 用于描述一个错误码
+enum Cancel {
+  // C_INVALID 无效
+  C_INVALID = 0;
+}

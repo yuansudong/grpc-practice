@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package Common;
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+// option
+//////////////////////////////////////////////////////////////////////////////
+option csharp_namespace = "Zwwx.Protobuf.Common";
+option cc_enable_arenas = true;
+option go_package = "protocol/generate/gopb/common/pbm_role;pbm_role";
+
+enum Role {
+    // RO_UNKNOWN 未知角色
+    RO_UNKNOWN = 0;
+    // RO_TOURIST 游客 
+    RO_TOURIST = 1;
+    // RO_NORMAL 游戏前端
+    RO_NORMAL = 2;
+    // AP_GAME_SDK SDK应用
+    AP_GAME_SDK = 3;
+}

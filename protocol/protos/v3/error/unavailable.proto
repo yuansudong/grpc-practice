@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package Error;
+
+//////////////////////////////////////////////////////////////////////////////
+// option
+//////////////////////////////////////////////////////////////////////////////
+option csharp_namespace = "Zwwx.Protobuf.Error";
+option cc_enable_arenas = true;
+option go_package = "protocol/generate/gopb/error/pbm_unavaliable;pbm_unavaliable";
+
+// 用于描述一个错误码
+enum Unavailable {
+  // U_INVALID 无效
+  U_INVALID = 0;
+  // U_METHOD 方法不可用
+  U_METHOD = 1;
+  // U_SQL SQL发生了错误
+  U_SQL = 2;
+  // U_TOKEN token生成错误
+  U_TOKEN = 3;
+  // U_GRPC_CONN grpc连接不可用
+  U_GRPC_CONN = 4;
+  // U_CRPC_GID GID服务不可用
+  U_CRPC_GID = 5;
+  // U_REDIS redis不可用
+  U_REDIS = 6;
+  // U_NATS nats 不可用
+  U_NATS = 7;
+  // U_KEEPALIVE keepalive 网关结点不可用
+  U_KEEPALIVE = 8;
+}

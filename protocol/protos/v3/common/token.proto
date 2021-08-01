@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package Common;
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+// option
+//////////////////////////////////////////////////////////////////////////////
+option csharp_namespace = "Zwwx.Protobuf.Common.Token";
+option go_package = "protocol/generate/gopb/common/pbm_token;pbm_token";
+
+import "common/os.proto";
+import "common/channel.proto";
+import "common/pattern.proto";
+
+
+
+
+//  Token 用于描述一个令牌信息结构
+message Token {
+  // UID 应用程序ID
+  uint64 UID = 1;
+  // Timestamp 当前的时间戳
+  int64 Timestamp = 2;
+  // AppID 应用程序ID
+  string AppID = 3;
+  // System 操作系统
+  Common.OS System = 4;
+  // Channel 渠道
+  Common.Channel Channel = 5;
+  // Pattern 模式,即多系统在线,还是单一系统在线
+  Common.Pattern Pattern = 6;
+}
